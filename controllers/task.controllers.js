@@ -14,7 +14,7 @@ exports.createTask = async (req, res) => {
 
     const server = await getLocalServer([
       {
-        active: true,
+        enable: true,
         "options.encode_video_resolution": { $ne: undefined },
       },
       {
