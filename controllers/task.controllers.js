@@ -101,6 +101,7 @@ exports.createTask = async (req, res) => {
 
     return res.json({ msg: "task create" });
   } catch (err) {
+    console.log(err)
     return res.json({ error: true, msg: err?.message });
   }
 };
