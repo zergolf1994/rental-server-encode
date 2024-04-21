@@ -151,6 +151,8 @@ exports.dataTask = async (req, res) => {
                     "http://",
                     "$server.sv_ip",
                     "/",
+                    "$$ROOT.fileId",
+                    "/",
                     "$$ROOT.file_name",
                   ],
                 },
