@@ -31,7 +31,8 @@ exports.getStorageServer = async () => {
           disk_percent: { $lte: 95 },
         },
       },
-      { $sample: { size: 1 } },
+      { $sort: { disk_percent: 1, disk_used: 1 } },
+      //{ $sample: { size: 1 } },
       {
         $set: {
           serverId: "$$ROOT._id",

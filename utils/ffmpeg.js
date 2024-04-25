@@ -122,12 +122,13 @@ exports.encode_video = async (file) => {
     return new Promise((resolve, reject) => {
       const options = [
         "-c:v libx264",
-        "-crf 23",
+        "-crf 25",
         "-preset medium",
         "-profile:v high",
         "-level:v 4.2",
         "-movflags +faststart",
         "-c:a aac",
+        "-max_muxing_queue_size 1024",
       ];
 
       if (data.quality == 1080) {
