@@ -2,6 +2,7 @@ const shell = require("shelljs");
 const { getLocalServer } = require("../utils/server.utils");
 const { EncodeModel } = require("../models/encode.models");
 const { encode_video } = require("../utils/ffmpeg");
+const { ErrorModel } = require("../models/error.models");
 
 exports.bashEncode = async (req, res) => {
   try {
@@ -79,6 +80,14 @@ exports.videoEncode = async (req, res) => {
     const file = encoding[0];
 
     const data_encode = await encode_video(file);
+
+    if(data_encode?.error){
+      await ErrorModel.create({
+        quality: file.quality,
+        message: "encode error",
+        fileId: file.fileId,
+      });
+    }
     return res.json(data_encode);
   } catch (err) {
     return res.json({ error: true, msg: err?.message });
